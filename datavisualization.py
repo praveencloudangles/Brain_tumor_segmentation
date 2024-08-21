@@ -74,7 +74,13 @@ def visualise_image():
     url_response = requests.get(url)
     with zipfile.ZipFile(BytesIO(url_response.content)) as z:
         z.extractall('.')
-
+    old_filename = "BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_355/W39_1998.09.19_Segm.nii"
+    new_filename = "BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/BraTS20_Training_355/BraTS20_Training_355_seg.nii"
+    
+    # Rename the file
+    os.rename(old_filename, new_filename)
+    
+    print(f"File renamed to: {new_filename}")
     base_path = os.path.join(os.getcwd(), "BraTS2020_TrainingData/MICCAI_BraTS2020_TrainingData/")
     random_folder = open_random_folder(base_path)
 
